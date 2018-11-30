@@ -13,13 +13,21 @@ namespace HostApp
             {
                 system.UseAutofac(AutofacConfig.Init());
                 
-                var actorProps = system.DI().Props<MessageActor>();
-
-                var actorRef = system.ActorOf(actorProps, "MessageActor");
+                var msActor = system.ActorOf(system.DI().Props<MessageActor>(), "MessageActor");
                 
-                actorRef.Tell("qq");
-                actorRef.Tell("qq");
-                actorRef.Tell("qq");
+                
+                msActor.Tell("this message was stashed before the actor initialization 1");
+                msActor.Tell("this message was stashed before the actor initialization 2");
+                msActor.Tell("this message was stashed before the actor initialization 3");
+                
+                
+                
+                msActor.Tell(new MessageActorConfigureMessage("_PREFIX_"));
+                
+                
+                msActor.Tell("this message 4");
+                
+                msActor.Tell("this message 5");
 
                 Console.ReadLine();
             }
