@@ -2,15 +2,15 @@
 using System.Linq;
 using Akka.Actor;
 using Akka.Configuration;
-using Akka.DI.AutoFac;
 using Akka.DI.Core;
 using Akka.Routing;
 using Akka.Util.Internal;
+using ContractMessages;
 using NLog;
 using NLog.Config;
 using NLog.Targets;
 
-namespace HostApp
+namespace ClientApp
 {
     class Program
     {
@@ -28,9 +28,10 @@ namespace HostApp
 
             LogManager.Configuration = config;
 
-        
+
+            
             var myConfig = ConfigurationFactory.ParseString(@"
-akka {
+akka {  
     loglevel = ""DEBUG""
     loggers=[""Akka.Logger.NLog.NLogLogger, Akka.Logger.NLog""]
     actor {
@@ -38,33 +39,25 @@ akka {
     }
     remote {
         dot-netty.tcp {
-            port = 51111
-            hostname = localhost
+		    port = 0
+		    hostname = localhost
         }
-
+log-remote-lifecycle-events = DEBUG
     }
 }
 ");
-            
-            using (var system = ActorSystem.Create("hostappakkasystem",  myConfig))
+            using (var system = ActorSystem.Create("localakkasystem",  myConfig))
             {
                 system.UseAutofac(AutofacConfig.Init());
                 
                 
-                system.ActorOf(system.DI().Props<MessageActorInitializerActor>(), "MessageActorInitializerActor");
+                var localActor = system.ActorOf(system.DI().Props<LocalActor>(), "LocalActor");
                 
                 
-                var router = system.ActorOf(system.DI().Props<MessageActor>().WithRouter(new RoundRobinPool(5)), "messagePool");
-
-
-                router.Tell(new Broadcast(new MessageActorGetStateMessage()));
-                
-
-                Console.ReadLine();
-                
-                
-                router.Tell(new Broadcast(PoisonPill.Instance));
-                
+                Enumerable.Range(0, 50).AsParallel().ForEach(i =>
+                {
+                    localActor.Tell(new QMessage("ClientApp", "Hi"));
+                });
                 
                 Console.ReadLine();
             }

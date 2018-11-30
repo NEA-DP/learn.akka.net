@@ -1,6 +1,7 @@
 using System;
 using Akka.Actor;
 using Akka.Event;
+using ContractMessages;
 
 namespace HostApp
 {
@@ -31,7 +32,7 @@ namespace HostApp
             {
                 BecomeWork(config.MessagePrefix);
             });
-            Receive<string>(message =>
+            Receive<QMessage>(message =>
             {
                 Stash.Stash();
                 Console.WriteLine($"Message '{message}' stashed.");
@@ -57,9 +58,11 @@ namespace HostApp
             {
                 Context.System.ActorSelection("*/MessageActorInitializerActor").Tell(new MessageActorCurrentStateMessage(_messagePrefix, _state));
             });
-            Receive<string>(message =>
+            Receive<QMessage>(message =>
             {
-                _messageService.Out($"_{_messagePrefix}_ : {message}");
+                _messageService.Out($"_{_messagePrefix}_ : message from : {message.Name}, subject : {message.Message}");
+                
+                Context.Sender.Tell(new QResponseMessage($"I see you, {message.Name}."));
             });
 
         }

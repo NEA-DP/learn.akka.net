@@ -2,6 +2,10 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HostApp", "HostApp\HostApp.csproj", "{D24F84D4-DCD5-450E-9BE1-F49BC360053B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClientApp", "ClientApp\ClientApp.csproj", "{CB0E275A-6344-49EF-8F5E-B12308AC868A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContractMessages", "ContractMessages\ContractMessages.csproj", "{7A8BF3EA-F239-4A6B-99BD-7AE0673A0070}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +16,13 @@ Global
 		{D24F84D4-DCD5-450E-9BE1-F49BC360053B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D24F84D4-DCD5-450E-9BE1-F49BC360053B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D24F84D4-DCD5-450E-9BE1-F49BC360053B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CB0E275A-6344-49EF-8F5E-B12308AC868A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CB0E275A-6344-49EF-8F5E-B12308AC868A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CB0E275A-6344-49EF-8F5E-B12308AC868A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CB0E275A-6344-49EF-8F5E-B12308AC868A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7A8BF3EA-F239-4A6B-99BD-7AE0673A0070}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7A8BF3EA-F239-4A6B-99BD-7AE0673A0070}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7A8BF3EA-F239-4A6B-99BD-7AE0673A0070}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7A8BF3EA-F239-4A6B-99BD-7AE0673A0070}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
