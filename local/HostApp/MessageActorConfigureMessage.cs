@@ -2,11 +2,11 @@ namespace HostApp
 {
     public class MessageActorConfigureMessage
     {
-        public MessageActorConfigureMessage(string messagePrefix)
+        public MessageActorConfigureMessage(int messagePrefix)
         {
             MessagePrefix = messagePrefix;
         }
 
-        public string MessagePrefix { get; }
+        public int MessagePrefix { get; }
     }
 }

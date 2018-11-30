@@ -1,4 +1,6 @@
+using System;
 using Akka.Actor;
+using Akka.Event;
 
 namespace HostApp
 {
@@ -8,11 +10,14 @@ namespace HostApp
         
         private readonly IMessageService _messageService;
 
-        private string _messagePrefix;
+        private int _messagePrefix = 0;
+
+        private MessageActorState _state;
 
         public MessageActor(IMessageService messageService)
         {
             _messageService = messageService;
+            
 
             Starting();
         }
@@ -20,6 +25,8 @@ namespace HostApp
         
         private void Starting()
         {
+            _state = MessageActorState.NotInitialized;
+            
             Receive<MessageActorConfigureMessage>(config =>
             {
                 BecomeWork(config.MessagePrefix);
@@ -27,12 +34,18 @@ namespace HostApp
             Receive<string>(message =>
             {
                 Stash.Stash();
+                Console.WriteLine($"Message '{message}' stashed.");
+            });
+            Receive<MessageActorGetStateMessage>(message =>
+            {
+                Context.System.ActorSelection("*/MessageActorInitializerActor").Tell(new MessageActorCurrentStateMessage(_messagePrefix, _state));
             });
         }
         
-        private void BecomeWork(string messagePrefix)
+        private void BecomeWork(int messagePrefix)
         {
             _messagePrefix = messagePrefix;
+            _state = MessageActorState.Initialized;
             Become(Work);
             Stash.UnstashAll();
         }
@@ -40,13 +53,21 @@ namespace HostApp
 
         private void Work()
         {
+            Receive<MessageActorGetStateMessage>(message =>
+            {
+                Context.System.ActorSelection("*/MessageActorInitializerActor").Tell(new MessageActorCurrentStateMessage(_messagePrefix, _state));
+            });
             Receive<string>(message =>
             {
-                _messageService.Out($"{_messagePrefix}{message}");
+                _messageService.Out($"_{_messagePrefix}_ : {message}");
             });
 
         }
 
-        
+        protected override void PostStop()
+        {
+            Context.System.ActorSelection("*/MessageActorInitializerActor").Tell(new MessageActorCurrentStateMessage(_messagePrefix, _state));
+            base.PostStop();
+        }
     }
 }

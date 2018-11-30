@@ -9,6 +9,8 @@ namespace HostApp
             var builder = new ContainerBuilder();
             builder.RegisterType<ConsoleMessageService>().As<IMessageService>();
             builder.RegisterType<MessageActor>();
+            builder.RegisterType<MessageActorInitializerActor>();
+            
             return builder.Build();
         }
     }
