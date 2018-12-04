@@ -5,7 +5,9 @@ using Akka.Configuration;
 using Akka.DI.Core;
 using Akka.Routing;
 using Akka.Util.Internal;
+using Autofac;
 using ContractMessages;
+using Core;
 using NLog;
 using NLog.Config;
 using NLog.Targets;
@@ -16,37 +18,14 @@ namespace ClientApp
     {
         static void Main(string[] args)
         {
-            var config = new LoggingConfiguration();
-
-            var consoleTarget = new ColoredConsoleTarget();
-            config.AddTarget("console", consoleTarget);
-
-            consoleTarget.Layout = @"${date:format=HH\:mm\:ss} ${logger} ${message}";
-
-            var rule1 = new LoggingRule("*", LogLevel.Debug, consoleTarget);
-            config.LoggingRules.Add(rule1);
-
-            LogManager.Configuration = config;
-
-
+            var container = AutofacConfig.Init();
             
-            var myConfig = ConfigurationFactory.ParseString(@"
-akka {  
-    loglevel = ""DEBUG""
-    loggers=[""Akka.Logger.NLog.NLogLogger, Akka.Logger.NLog""]
-    actor {
-        provider = remote
-    }
-    remote {
-        dot-netty.tcp {
-		    port = 0
-		    hostname = localhost
-        }
-log-remote-lifecycle-events = DEBUG
-    }
-}
-");
-            using (var system = ActorSystem.Create("localakkasystem",  myConfig))
+            NLogConfig.Init();
+        
+
+            var akkaConfig = container.Resolve<IHoconFileLoader>().ParseConfig("akkaConfig.hocon");
+
+            using (var system = ActorSystem.Create("localakkasystem",  akkaConfig))
             {
                 system.UseAutofac(AutofacConfig.Init());
                 

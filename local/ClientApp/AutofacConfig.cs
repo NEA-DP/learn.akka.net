@@ -1,4 +1,6 @@
 using Autofac;
+using Modules.HoconLoader;
+using Modules.HoconReader;
 
 namespace ClientApp
 {
@@ -7,6 +9,10 @@ namespace ClientApp
         public static IContainer Init()
         {
             var builder = new ContainerBuilder();
+            
+            builder.RegisterModule<HoconReaderModule>();
+            builder.RegisterModule<HoconLoaderModule>();
+            
             builder.RegisterType<LocalActor>();
             
             return builder.Build();

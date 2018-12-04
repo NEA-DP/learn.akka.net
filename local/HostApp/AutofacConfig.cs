@@ -1,4 +1,6 @@
 using Autofac;
+using Modules.HoconLoader;
+using Modules.HoconReader;
 
 namespace HostApp
 {
@@ -7,6 +9,10 @@ namespace HostApp
         public static IContainer Init()
         {
             var builder = new ContainerBuilder();
+            
+            builder.RegisterModule<HoconReaderModule>();
+            builder.RegisterModule<HoconLoaderModule>();
+            
             builder.RegisterType<ConsoleMessageService>().As<IMessageService>();
             builder.RegisterType<MessageActor>();
             builder.RegisterType<MessageActorInitializerActor>();
