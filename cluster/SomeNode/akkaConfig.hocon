@@ -1,0 +1,22 @@
+akka {
+    loglevel = "DEBUG"
+    loggers=["Akka.Logger.NLog.NLogLogger, Akka.Logger.NLog"]
+    
+    extensions = ["Akka.Cluster.Tools.Client.ClusterClientReceptionistExtensionProvider, Akka.Cluster.Tools"]
+    
+    actor {
+        provider = cluster
+
+    }
+    
+    remote {
+        dot-netty.tcp {
+            port = 0 #let os pick random port
+            hostname = localhost
+        }
+    }
+    cluster {
+        seed-nodes = ["akka.tcp://ClusterSystem@localhost:51111"]
+    }
+    
+}
