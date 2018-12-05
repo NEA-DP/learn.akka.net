@@ -2,7 +2,7 @@
 
     <PropertyGroup>
         <OutputType>Exe</OutputType>
-        <TargetFramework>netcoreapp2.1</TargetFramework>
+        <TargetFramework>net471</TargetFramework>
     </PropertyGroup>
 
     <ItemGroup>
@@ -15,6 +15,13 @@
     <ItemGroup>
       <ProjectReference Include="..\ContractMessages\ContractMessages.csproj" />
       <ProjectReference Include="..\Modules\Modules.csproj" />
+      <ProjectReference Include="..\SharedActor\SharedActor.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Reference Include="Akka, Version=1.3.10.0, Culture=neutral, PublicKeyToken=null">
+        <HintPath>..\..\..\..\Users\enuzhdin\.nuget\packages\akka\1.3.10\lib\netstandard1.6\Akka.dll</HintPath>
+      </Reference>
     </ItemGroup>
 
 </Project>

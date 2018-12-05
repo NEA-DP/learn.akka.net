@@ -3,12 +3,17 @@ akka {
     loggers=["Akka.Logger.NLog.NLogLogger, Akka.Logger.NLog"]
     actor {
         provider = remote
+        deployment {
+            /remoteecho {
+                remote = "akka.tcp://hostappakkasystem@localhost:10090"
+            }
+        }
     }
     remote {
-        dot-netty.tcp {
+        helios.tcp {
 		    port = 0
 		    hostname = localhost
         }
-log-remote-lifecycle-events = DEBUG
+
     }
 }

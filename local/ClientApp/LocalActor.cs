@@ -10,7 +10,7 @@ namespace ClientApp
         {
             Receive<QMessage>(message =>
             {
-                var remoteActor = Context.ActorSelection("akka.tcp://hostappakkasystem@localhost:51111/user/messagePool");
+                var remoteActor = Context.ActorSelection("akka.tcp://hostappakkasystem@localhost:10090/user/messagePool");
                
                 remoteActor.Tell(message, Self);
             });

@@ -26,7 +26,7 @@ namespace HostApp
             Console.CancelKeyPress += (sender, eventArgs) =>
             {
                 
-                service.Stop();
+                service.Stop().Wait();
 
                 
                 eventArgs.Cancel = true;

@@ -1,6 +1,7 @@
 using Autofac;
 using Modules.HoconLoader;
 using Modules.HoconReader;
+using SharedActor;
 
 namespace ClientApp
 {
@@ -13,7 +14,10 @@ namespace ClientApp
             builder.RegisterModule<HoconReaderModule>();
             builder.RegisterModule<HoconLoaderModule>();
             
+            //builder.RegisterType<EchoActor>();
+            
             builder.RegisterType<LocalActor>();
+            builder.RegisterType<HelloActor>();
             
             return builder.Build();
         }

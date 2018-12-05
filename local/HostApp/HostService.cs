@@ -32,7 +32,7 @@ namespace HostApp
             System.UseAutofac(container);
                 
                 
-            System.ActorOf(System.DI().Props<MessageActorInitializerActor>(), "MessageActorInitializerActor");
+           System.ActorOf(System.DI().Props<MessageActorInitializerActor>(), "MessageActorInitializerActor");
                 
                 
             var router = System.ActorOf(System.DI().Props<MessageActor>().WithRouter(new RoundRobinPool(5)), "messagePool");
