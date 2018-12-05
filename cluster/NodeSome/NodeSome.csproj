@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <TargetFramework>netcoreapp2.1</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <Reference Include="Akka, Version=1.3.5.0, Culture=neutral, PublicKeyToken=null">
+        <HintPath>..\..\..\..\Users\enuzhdin\.nuget\packages\akka\1.3.5\lib\net45\Akka.dll</HintPath>
+      </Reference>
+      <Reference Include="Autofac, Version=4.8.1.0, Culture=neutral, PublicKeyToken=17863af14b0044da">
+        <HintPath>..\..\..\..\Users\enuzhdin\.nuget\packages\autofac\4.8.1\lib\net45\Autofac.dll</HintPath>
+      </Reference>
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\HoconConfigLoaderModule\HoconConfigLoaderModule.csproj" />
+      <ProjectReference Include="..\SharedActors\SharedActors.csproj" />
+    </ItemGroup>
+
+</Project>

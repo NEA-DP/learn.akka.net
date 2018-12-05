@@ -1,0 +1,20 @@
+using Autofac;
+using HoconConfigLoaderModule;
+using SharedActors;
+
+namespace NodeSeed
+{
+    public static class AutofacComposition
+    {
+        public static IContainer Build()
+        {
+            var builder = new ContainerBuilder();
+            
+            builder.RegisterModule<HoconLoaderModule>();
+
+            builder.RegisterType<ClusterListener>();
+            
+            return builder.Build();
+        }
+    }
+}
