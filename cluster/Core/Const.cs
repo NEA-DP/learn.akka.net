@@ -11,6 +11,7 @@ namespace Core
             public static class SharedActorsNames
             {
                 public const string ClusterListener = "ClusterListener";
+                public const string DeviceEventsReceiver = "DeviceEventsReceiver";
             }
         }
     }

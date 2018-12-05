@@ -3,6 +3,7 @@ using Akka.Actor;
 using Akka.DI.Core;
 using Autofac;
 using Core;
+using DeviceEventsDispatcher;
 using SharedActors;
 
 namespace NodeSome
@@ -28,6 +29,9 @@ namespace NodeSome
                 
             System.ActorOf(System.DI().Props<ClusterListener>(), Const.Akka.SharedActorsNames.ClusterListener);
                 
+            
+            System.ActorOf(System.DI().Props<DeviceEventsDispatcherActor>());
+            
             return true;
         }
 

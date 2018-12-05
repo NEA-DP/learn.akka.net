@@ -28,6 +28,8 @@ namespace NodeSeed
             System.UseAutofac(container);
                 
             System.ActorOf(System.DI().Props<ClusterListener>(), Const.Akka.SharedActorsNames.ClusterListener);
+            
+            System.ActorOf(System.DI().Props<DeviceEventsReceiverActor>(), Const.Akka.SharedActorsNames.DeviceEventsReceiver);
                 
             return true;
         }

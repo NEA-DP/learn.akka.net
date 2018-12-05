@@ -14,6 +14,8 @@ namespace NodeSeed
 
             builder.RegisterType<ClusterListener>();
             
+            builder.RegisterType<DeviceEventsReceiverActor>();
+            
             return builder.Build();
         }
     }
