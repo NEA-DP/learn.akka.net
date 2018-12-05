@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HostAkkaSystem", "HostAkkaSystem\HostAkkaSystem.csproj", "{22C0BDB0-578E-43A8-BAFC-C2266754E5C8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClientAkkaSystem", "ClientAkkaSystem\ClientAkkaSystem.csproj", "{3BC6BCCB-768F-4171-81FC-222839879D40}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharedAktors", "SharedAktors\SharedAktors.csproj", "{60E07F94-16C2-40AC-BA34-70FD15390EE4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{22C0BDB0-578E-43A8-BAFC-C2266754E5C8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{22C0BDB0-578E-43A8-BAFC-C2266754E5C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{22C0BDB0-578E-43A8-BAFC-C2266754E5C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{22C0BDB0-578E-43A8-BAFC-C2266754E5C8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3BC6BCCB-768F-4171-81FC-222839879D40}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3BC6BCCB-768F-4171-81FC-222839879D40}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3BC6BCCB-768F-4171-81FC-222839879D40}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3BC6BCCB-768F-4171-81FC-222839879D40}.Release|Any CPU.Build.0 = Release|Any CPU
+		{60E07F94-16C2-40AC-BA34-70FD15390EE4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{60E07F94-16C2-40AC-BA34-70FD15390EE4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{60E07F94-16C2-40AC-BA34-70FD15390EE4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{60E07F94-16C2-40AC-BA34-70FD15390EE4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
